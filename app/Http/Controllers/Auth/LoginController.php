@@ -2,24 +2,20 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Social\FacebookController;
 use Illuminate\Http\Request;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Auth;
-use App\User;
-use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
-    public function authenticate(Request $request){
+    public function form(){
+        $fb = new FacebookController();
 
-        if ( Auth::attempt(['Email' => $request->email, 'Password' => $request->password]) )
-        {
-            return back()
-                ->withInput();
-        }
-
-        return redirect('/home');
+        $data = array(
+            'fbLogin' => $fb->Login()
+        );
+        return view('auth/login', $data);
     }
-
 }

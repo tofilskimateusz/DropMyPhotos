@@ -32,4 +32,7 @@ Route::group(['middleware' => ['web']], function () {
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
     Route::get('/', 'HomeController@index');
+    Route::get('/login', 'Auth\LoginController@form');
+
+    Route::get('/login/fb-callback', 'Social\FacebookController@LoginCallback');
 });
