@@ -25,14 +25,14 @@
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
-
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
     Route::get('/', 'HomeController@index');
     Route::get('/login', 'Auth\LoginController@form');
-
     Route::get('/login/fb-callback', 'Social\FacebookController@LoginCallback');
+
+
+    //Integration Part
+    Route::get('/social/integrate/facebook/show_albums', 'IntegrationController@showAlbums');
+    Route::get('/social/integrate/facebook/show_albums/{album_id}', 'IntegrationController@showAlbumPictures');
 });

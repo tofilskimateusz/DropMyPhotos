@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Social;
 
+use App\Contracts\IntegrationInterface;
 use App\User;
 use App\User_grants;
 use Facebook\Exceptions\FacebookResponseException;
@@ -25,13 +26,14 @@ class FacebookController extends Controller
             'app_secret' => 'ae8f6f94b072d382c3da6c918cfd446c',
             'default_graph_version' => 'v2.5',
         );
+        if(session_status() === PHP_SESSION_NONE)
         session_start();
     }
 
     public function Login(){
         $fb = new Facebook($this->fb_config);
         $helper = $fb->getRedirectLoginHelper();
-        $permissions = ['email']; // Optional permissions
+        $permissions = ['public_profile', 'email', 'user_photos']; // Optional permissions
         $loginUrl = $helper->getLoginUrl(url('/login/fb-callback'), $permissions);
 
         return $loginUrl;
@@ -145,12 +147,13 @@ class FacebookController extends Controller
         ]);
     }
 
-    protected function getUserProfile($fields){
+    protected function getUserProfile($fields, $initialSource = '/me'){
+
         $fb = new Facebook($this->fb_config);
         $fields = implode(',', $fields);
         try {
             // Returns a `Facebook\FacebookResponse` object
-            $response = $fb->get('/me?fields='.$fields, $_SESSION['fb_access_token']);
+            $response = $fb->get($initialSource.'?fields='.$fields, $_SESSION['fb_access_token']);
         } catch(FacebookResponseException $e) {
             echo 'Graph returned an error: ' . $e->getMessage();
             exit;
@@ -163,4 +166,5 @@ class FacebookController extends Controller
 
         return $user;
     }
+
 }
