@@ -6,7 +6,7 @@
     @foreach($albums as $val)
         <li>
             <div>
-                <a href="/social/integrate/facebook/show_albums/{{$val['id']}}">{{$val['name']}}>
+                <a href="/social/integrate/facebook/{{$val['id']}}">{{$val['name']}}>
                 <img src="{{$val['picture']['url']}}">
             </div>
         </li>
