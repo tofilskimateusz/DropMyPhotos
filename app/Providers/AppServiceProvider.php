@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    protected $defer = true;
     /**
      * Bootstrap any application services.
      *
@@ -23,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('App\Contracts\IntegrationInterface', 'App\Services\FacebookService');
-
+        //
     }
+
 }

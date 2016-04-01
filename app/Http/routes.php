@@ -29,10 +29,25 @@ Route::group(['middleware' => 'web'], function () {
     Route::auth();
     Route::get('/', 'HomeController@index');
     Route::get('/login', 'Auth\LoginController@form');
+    Route::get('/login/googledrive', [ 'uses' =>'Social\GoogleDriveController@login', 'as' => '/login/googledrive']);
+
     Route::get('/login/fb-callback', 'Social\FacebookController@LoginCallback');
+    Route::get('/login/gd-callback', 'Social\GoogleDriveController@loginCallback');
+
+    Route::get('/logout/googledrive', 'Social\GoogleDriveController@logout');
 
 
     //Integration Part
-    Route::get('/social/integrate/facebook/show_albums', 'IntegrationController@showAlbums');
-    Route::get('/social/integrate/facebook/show_albums/{album_id}', 'IntegrationController@showAlbumPictures');
+
+    //Facebook
+
+    Route::get('/social/integrate/facebook/', [ 'uses' => 'IntegrationController@showServiceAlbums', 'as' => 'facebook.showServiceAlbums']);
+    Route::get('/social/integrate/facebook/{album_id}', [ 'uses' => '\App\Services\FacebookController\@showAlbumPictures']);
+
+    //Google
+
+    Route::get('/social/integrate/googledrive/', [ 'uses' => 'IntegrationController@showServiceAlbums', 'as' => 'google.showServiceAlbums', 'middleware' => 'google']);
+
 });
+
+

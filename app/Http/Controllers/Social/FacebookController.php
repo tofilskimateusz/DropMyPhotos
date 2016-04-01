@@ -3,28 +3,29 @@
 namespace App\Http\Controllers\Social;
 
 use App\Contracts\IntegrationInterface;
+use App\Http\Controllers\IntegrationController;
 use App\User;
 use App\User_grants;
 use Facebook\Exceptions\FacebookResponseException;
 use Facebook\Exceptions\FacebookSDKException;
-use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Facebook\Facebook;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class FacebookController extends Controller
 {
     private $app_id;
     private $fb_config;
+    
 
     public function __construct(){
-        $this->app_id = '1715799618442385';
+        $this->app_id = env('FB_APP_ID');
         $this->fb_config = array(
             'app_id' => $this->app_id,
-            'app_secret' => 'ae8f6f94b072d382c3da6c918cfd446c',
-            'default_graph_version' => 'v2.5',
+            'app_secret' => env('FB_APP_SECRET'),
+            'default_graph_version' => env('FB_VERSION'),
         );
         if(session_status() === PHP_SESSION_NONE)
         session_start();

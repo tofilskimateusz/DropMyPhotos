@@ -23,8 +23,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
+        var_dump($req->session()->all());
         return view('home');
     }
 }

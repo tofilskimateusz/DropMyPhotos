@@ -42,11 +42,12 @@ class SocialServiceProvider extends ServiceProvider
     protected function getServiceNameFromUrl($url){
         $parsed = parse_url($url, PHP_URL_PATH);
         $parsed_array = explode('/', $parsed);
-        return ucfirst($parsed_array[3]);
+        if(isset($parsed_array[3]))
+            return ucfirst($parsed_array[3]);
     }
 
     protected function bindContainers(){
-            $foundService = array_search($this->getServiceNameFromUrl(url()->current()),$this->services);
+        $foundService = array_search($this->getServiceNameFromUrl(url()->current()),$this->services);
             if($foundService !== FALSE)
                 $this->app->bind('App\Contracts\IntegrationInterface', 'App\Services\\' . $this->services[$foundService] . 'Service');
 
