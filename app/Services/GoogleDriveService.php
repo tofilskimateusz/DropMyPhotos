@@ -15,7 +15,11 @@ use App\Http\Controllers\Social\GoogleDriveController;
 class GoogleDriveService extends GoogleDriveController implements IntegrationInterface
 {
     
-    
+    public function getServiceName()
+    {
+       return "googledrive";
+    }
+
     public function showAlbums()
     {
         $optParams = array(

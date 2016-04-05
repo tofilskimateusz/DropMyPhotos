@@ -9,6 +9,7 @@
 namespace App\Contracts;
 
 interface IntegrationInterface {
+    public function getServiceName();
     public function showAlbums();
     public function showAlbumPictures($album_id);
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -26,6 +26,13 @@ class HomeController extends Controller
     public function index(Request $req)
     {
         var_dump($req->session()->all());
-        return view('home');
+        $data = array(
+            'title' => 'Home',
+        );
+        return view('home', $data);
+    }
+    public function home()
+    {
+        return view('welcome');
     }
 }

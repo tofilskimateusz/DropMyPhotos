@@ -4,26 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    @yield('meta_redirect')
 
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
+    <title>DropMyPhotos</title>
 
     <!-- Styles -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+    <link href="/css/app.css" rel="stylesheet">
+    <link href="/components/image-picker/image-picker.css" rel="stylesheet">
+    <link href="/components/fancybox/jquery.fancybox.css" rel="stylesheet">
 
-    <style>
-        body {
-            font-family: 'Lato';
-        }
-
-        .fa-btn {
-            margin-right: 6px;
-        }
-    </style>
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-default navbar-static-top">
@@ -40,7 +29,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
+                    DropMyPhotos
                 </a>
             </div>
 
@@ -73,9 +62,18 @@
     </nav>
 
     @yield('content')
+    <div class="footer container">
+        <div class="text-right">
+            Copyrights &copy; {{date('Y')}} Marcin Tofilski
+        </div>
+    </div>
     <!-- JavaScripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    <script src="/js/jquery.min.js"></script>
+    <script src="/components/bootstrap/bootstrap.min.js"></script>
+    <script src="/components/image-picker/image-picker.min.js"></script>
+    <script src="/components/fancybox/jquery.fancybox.pack.js"></script>
+    <script src="/js/all.js"></script>
+
+    @yield('additional_scripts')
 </body>
 </html>

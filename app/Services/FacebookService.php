@@ -14,6 +14,10 @@ use App\Http\Controllers\Social\FacebookController;
 
 class FacebookService extends FacebookController implements IntegrationInterface
 {
+    public function getServiceName()
+    {
+        return "facebook";
+    }
 
     public function showAlbums(){
         $photos = $this->getUserProfile(['albums{name,picture,id}']);
@@ -22,8 +26,8 @@ class FacebookService extends FacebookController implements IntegrationInterface
     }
 
     public function showAlbumPictures($album_id){
-        $photos = $this->getUserProfile(['photos{images}'], $album_id);
-
+        $photos = $this->getUserProfile(['photos{id,images,created_time,album}'], $album_id);
+        
         return $photos['photos'];
     }
 

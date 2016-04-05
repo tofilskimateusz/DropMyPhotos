@@ -1,0 +1,19 @@
+// my_mixins.scss
+// ----------------------- 
+// Copyright 2014
+// Author: Marcin Tofilski
+//--------------------------------
+
+@mixin font-face($fontName,$dir, $fontPrefix: ''){
+
+  @font-face {
+    font-family: #{$fontName};
+    src: url('#{$dir}#{$fontName}#{$fontPrefix}.eot');
+    src: url('#{$dir}#{$fontName}#{$fontPrefix}.eot?#iefix') format('embedded-opentype'),
+         url('#{$dir}#{$fontName}#{$fontPrefix}.woff') format('woff'),
+         url('#{$dir}#{$fontName}#{$fontPrefix}.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+  }  
+}
