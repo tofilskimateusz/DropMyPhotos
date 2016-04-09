@@ -26,6 +26,7 @@ class HomeController extends Controller
     public function index(Request $req)
     {
         var_dump($req->session()->all());
+        
         $data = array(
             'title' => 'Home',
         );

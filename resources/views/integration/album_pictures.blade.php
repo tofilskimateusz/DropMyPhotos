@@ -14,6 +14,7 @@
             <li class="elem-single single-photo">
                     <div class="elem-picture">
                         <img src="{{$val['images'][count($val['images'])-1]['source']}}" data-full-size="{{$val['images'][0]['source']}}">
+
                     </div>
                     <div class="elem-selection">
                         <input type="checkbox" id="picture-{{$key}}" value="{{$val['id']}}" name="picture-{{$key}}">

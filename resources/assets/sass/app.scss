@@ -24,14 +24,14 @@ ul, li{
     padding: 8px 4px;
     border-radius: 4px;
     cursor: pointer;
-
+    min-height: 70px;
+    vertical-align: top;
     &.single-folder{
       background: #DDDDDD;
     }
   }
   .selected{
     padding:5px 1px;
-    border: 4px solid #0066bb;
   }
   .elem-picture {
     img {
@@ -43,8 +43,25 @@ ul, li{
     }
   }
 }
-#deselectAllPhotos{
-
+#importElements .selected{
+  border: 4px solid #0066bb;
+}
+#photoList {
+  .selected {
+    border: 4px solid #E9DC51;
+  }
+}
+.modal-properties{
+  ul, li{
+    list-style-type: none;
+  }
+  li{
+    font-weight: bold;
+  }
+  span{
+    display: block;
+    font-weight: normal;
+  }
 }
 
 

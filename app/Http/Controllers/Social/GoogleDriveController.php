@@ -46,7 +46,8 @@ class GoogleDriveController extends Controller
     public function login(Request $request){
         session_start();
         $client = $this->getClient();
-        if ($this->checkSession()){
+
+        if ($this->checkSession() && ! $client->isAccessTokenExpired()){
             $client->setAccessToken($this->getSessionAccessToken());
             return redirect('/social/integrate/googledrive/');
         } else {
@@ -66,8 +67,8 @@ class GoogleDriveController extends Controller
             $client->authenticate($_GET['code']);
 
             $request->session()->put('gd_access_token', $client->getAccessToken());
-            var_dump($client);
-            //return redirect('/');
+
+            return redirect('/');
         }
     }
 

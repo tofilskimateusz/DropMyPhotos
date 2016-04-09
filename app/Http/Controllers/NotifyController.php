@@ -38,7 +38,7 @@ class NotifyController extends Controller
             'message' => 'Import pictures successfuly added to your album!',
             'header' => 'Import Pictures',
             'type' => 'success',
-            'redirect_uri' => '/social/files/'
+            'redirect_uri' => '/storage/files/'
         );
 
         return $this->returnMessage($data);

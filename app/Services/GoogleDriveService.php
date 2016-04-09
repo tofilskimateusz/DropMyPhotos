@@ -25,18 +25,26 @@ class GoogleDriveService extends GoogleDriveController implements IntegrationInt
         $optParams = array(
             'corpus' => 'domain',
             'orderBy' => 'folder',
-            'q' => 'mimeType = \'application/vnd.google-apps.folder\' AND trashed = FALSE',
-            'fields' => 'files(createdTime,name,parents,webContentLink)'
+            'q' => 'mimeType = \'application/vnd.google-apps.folder\' AND trashed = FALSE AND \'root\' IN parents ',
+            'fields' => 'files(createdTime,name,parents)'
         );
         $photos = $this->getUserProfile('files', $optParams);
-        foreach ($photos as $photo){
-            echo $photo['name'].'<br/>';
-        }
-        //return $photos;
+        $photos = $this->parseShowAlbumResponse($photos);
+        var_dump($photos);
+        return $photos;
     }
 
     public function showAlbumPictures($album_id)
     {
         // TODO: Implement showAlbumPictures() method.
+    }
+
+    private function parseShowAlbumResponse($photos){
+        $newPhotos = $photos;
+        foreach ($photos as $key => $val){
+            $newPhotos[$key]['name'] = $val['name'];
+            $newPhotos[$key]['created_time'] = $val['createdTime'];
+        }
+        return $newPhotos;
     }
 }

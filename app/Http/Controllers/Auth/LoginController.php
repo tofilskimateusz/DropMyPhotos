@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -17,5 +18,9 @@ class LoginController extends Controller
             'fbLogin' => $fb->Login()
         );
         return view('auth/login', $data);
+    }
+    public function logout(){
+        Auth::logout();
+        return redirect('/');
     }
 }

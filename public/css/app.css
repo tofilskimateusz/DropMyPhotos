@@ -7846,18 +7846,35 @@ ul, li {
   border: 1px solid #b0b0b0;
   padding: 8px 4px;
   border-radius: 4px;
-  cursor: pointer; }
+  cursor: pointer;
+  min-height: 70px;
+  vertical-align: top; }
   .elem-listing .elem-single.single-folder {
     background: #DDDDDD; }
 
 .elem-listing .selected {
-  padding: 5px 1px;
-  border: 4px solid #0066bb; }
+  padding: 5px 1px; }
 
 .elem-listing .elem-picture img {
   max-width: 100%;
   height: 90px;
   text-align: center;
   margin: 0 auto; }
+
+#importElements .selected {
+  border: 4px solid #0066bb; }
+
+#photoList .selected {
+  border: 4px solid #E9DC51; }
+
+.modal-properties ul, .modal-properties li {
+  list-style-type: none; }
+
+.modal-properties li {
+  font-weight: bold; }
+
+.modal-properties span {
+  display: block;
+  font-weight: normal; }
 
 /*# sourceMappingURL=app.css.map */

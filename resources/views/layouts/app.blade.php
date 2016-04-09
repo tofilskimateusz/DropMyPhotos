@@ -37,6 +37,9 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
+                    @if (! Auth::guest())
+                        <li><a href="{{ url('/storage/files') }}"><i class="fa fa-image"></i> My photos</a></li>
+                    @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->
